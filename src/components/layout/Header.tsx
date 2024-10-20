@@ -4,22 +4,28 @@ const Header = () => {
   const menu = (
     <>
       <li className="mx-2 ">
-        <NavLink to="/" className="text-orange-300">
+        <NavLink to="/" className="font-sans font-bold text-lg">
           Home
         </NavLink>
       </li>
       <li className="mx-2">
-        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/about" className="font-sans font-bold text-lg">
+          About Us
+        </NavLink>
       </li>
       <li className="mx-2">
-        <NavLink to="/booking">Booking</NavLink>
+        <NavLink to="/booking" className="font-sans font-bold text-lg">
+          Booking
+        </NavLink>
       </li>
       <li className="mx-2">
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/contact" className="font-sans font-bold text-lg">
+          Contact
+        </NavLink>
       </li>
     </>
   );
-  // Home, About Us, Booking, Contact.
+
   return (
     <div className="navbar bg-base-100 shadow-xl px-12">
       <div className="navbar-start">
@@ -55,7 +61,7 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{menu}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="" className="btn">
+        <Link to="/login" className="btn">
           Login
         </Link>
       </div>
