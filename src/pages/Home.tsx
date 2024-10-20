@@ -1,5 +1,5 @@
 const Home = () => {
-  return <div></div>;
+  return <div className="px-12"></div>;
 };
 
 export default Home;
