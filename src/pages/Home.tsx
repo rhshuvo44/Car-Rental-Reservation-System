@@ -1,5 +1,11 @@
+import HeroSection from "../components/home/HeroSection";
+
 const Home = () => {
-  return <div className="px-12"></div>;
+  return (
+    <div className="">
+      <HeroSection />
+    </div>
+  );
 };
 
 export default Home;
