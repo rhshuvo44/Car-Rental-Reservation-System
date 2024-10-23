@@ -2,10 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import About from "../pages/About";
 import Booking from "../pages/Booking";
+import CarDetails from "../pages/CarDetails";
 import CarListing from "../pages/CarListing";
 import Contact from "../pages/Contact";
 import Home from "../pages/Home";
-import CarDetails from "../pages/CarDetails";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +20,7 @@ export const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
+
       {
         path: "/contact",
         element: <Contact />,
@@ -35,5 +38,13 @@ export const router = createBrowserRouter([
         element: <CarDetails />,
       },
     ],
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
