@@ -1,37 +1,34 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { z } from "zod";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import CustomForm from "../components/form/CustomForm";
+import CustomInput from "../components/form/CustomInput";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import { setUser, TUser } from "../redux/features/auth/authSlice";
+import { useAppDispatch } from "../redux/hook";
+import { loginSchema } from "../schema/zodValidationSchema";
+import { verifyToken } from "../util/verifyToken";
 
 // Define the validation schema with Zod
-const schema = z.object({
-  email: z
-    .string()
-    .email("Invalid email address.")
-    .min(1, "Email is required."),
-  password: z.string().min(1, "Password is required."),
-});
-
-type FormData = z.infer<typeof schema>;
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-  });
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = async (data: FormData) => {
-    // Simulate API call for login
+  const [login] = useLoginMutation();
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     try {
-      // Replace with your API login logic
-      console.log("User signed in:", data);
-      // Redirect to the dashboard after successful login
+      const res = await login(data).unwrap();
+
+      const user = verifyToken(res?.token) as TUser;
+      dispatch(setUser({ user, token: res.token }));
+
+      toast.success(res?.message);
+      navigate(`/${user?.role}/dashboard`, { replace: true });
     } catch (error) {
-      console.error("Error during login:", error);
-      // Optionally set an error state here if the API fails
+      console.log(error);
     }
   };
 
@@ -39,42 +36,26 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6">Sign In</h2>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-4">
-            <label className="block mb-1">Email Address</label>
-            <input
-              type="email"
-              {...register("email")}
-              className={`border rounded p-2 w-full ${
-                errors.email ? "border-red-500" : ""
-              }`}
-            />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
-            )}
-          </div>
-          <div className="mb-4">
-            <label className="block mb-1">Password</label>
-            <input
-              type="password"
-              {...register("password")}
-              className={`border rounded p-2 w-full ${
-                errors.password ? "border-red-500" : ""
-              }`}
-            />
-            {errors.password && (
-              <p className="text-red-500">{errors.password.message}</p>
-            )}
-          </div>
+        <CustomForm onSubmit={onSubmit} resolver={zodResolver(loginSchema)}>
+          <CustomInput
+            type="email"
+            name="email"
+            label="Email Address"
+            placeholder="Enter your email"
+          />
+          <CustomInput
+            type="password"
+            name="password"
+            label="Password"
+            placeholder="Enter Your Password"
+          />
           <button
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded w-full hover:bg-blue-600"
           >
             Sign In
           </button>
-        </form>
-
+        </CustomForm>
         <div className="mt-4">
           <p>
             <Link

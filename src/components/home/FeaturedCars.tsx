@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import car from "../../assets/image/car-right.png";
 
 const cars = [
@@ -42,7 +43,9 @@ const FeaturedCars = () => {
               <p>{car.description}</p>
               <div className="card-actions justify-between items-center">
                 <span className="text-lg font-bold">{car.price}</span>
-                <button className="btn btn-primary">Book Now</button>
+                <button className="btn btn-primary">
+                  <Link to={`/booking/${car.id}`}>Book Now</Link>
+                </button>
               </div>
             </div>
           </div>
