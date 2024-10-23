@@ -10,7 +10,7 @@ type TInputProps = {
 
 const CustomInput = ({ type, name, label, placeholder }: TInputProps) => {
   return (
-    <div style={{ marginBottom: "20px" }}>
+    <div className="mb-4">
       <Controller
         name={name}
         render={({ field, fieldState }) => (
@@ -22,7 +22,6 @@ const CustomInput = ({ type, name, label, placeholder }: TInputProps) => {
               {...field}
               type={type}
               placeholder={placeholder}
-              //   className={`input input-bordered w-full`}
               className={`input input-bordered w-full ${
                 fieldState.error ? "border-red-500" : ""
               }`}

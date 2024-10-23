@@ -21,7 +21,6 @@ const Login = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     try {
       const res = await login(data).unwrap();
-
       const user = verifyToken(res?.token) as TUser;
       dispatch(setUser({ user, token: res.token }));
 
