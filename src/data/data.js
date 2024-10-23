@@ -34,3 +34,31 @@ export const cars = [
   },
   // Add more car entries as needed
 ];
+export const carDetailsData = {
+  id: 1,
+  name: "2023 Honda CR-V",
+  type: "SUV",
+  price: 30000,
+  availability: "Available",
+  description: "Spacious SUV with excellent fuel efficiency.",
+  features: [
+    "All-Wheel Drive",
+    "Leather Seats",
+    "Sunroof",
+    "Bluetooth Connectivity",
+    "Backup Camera",
+  ],
+  reviews: [
+    { user: "John Doe", comment: "Great car for families!", rating: 5 },
+    {
+      user: "Jane Smith",
+      comment: "Very comfortable and spacious.",
+      rating: 4,
+    },
+  ],
+  images: [
+    "https://via.placeholder.com/600x400.png?text=Honda+CR-V+1",
+    "https://via.placeholder.com/600x400.png?text=Honda+CR-V+2",
+    "https://via.placeholder.com/600x400.png?text=Honda+CR-V+3",
+  ],
+};
