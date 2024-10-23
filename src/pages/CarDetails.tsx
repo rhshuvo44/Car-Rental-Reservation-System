@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // src/carData.js
 const carDetails = {
@@ -45,13 +46,10 @@ const CarDetails = () => {
     }));
   };
 
-  const handleBookNow = () => {
-    // Navigate to booking page or handle booking logic here
-    alert("Booking functionality not implemented yet!");
-  };
+ 
 
   return (
-    <div className="container mx-auto p-12 mt-10">
+    <div className="container w-full  mx-auto p-12 mt-10">
       <h1 className="text-3xl font-bold mb-4">{carDetails.name}</h1>
       <p className="text-lg mb-2">Type: {carDetails.type}</p>
       <p className="text-lg mb-4">Price: ${carDetails.price}</p>
@@ -137,11 +135,8 @@ const CarDetails = () => {
       )}
 
       {/* Book Now Button */}
-      <button
-        onClick={handleBookNow}
-        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-      >
-        Book Now
+      <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+        <Link to={`/booking/${carDetails.id}`}>Book Now</Link>
       </button>
     </div>
   );

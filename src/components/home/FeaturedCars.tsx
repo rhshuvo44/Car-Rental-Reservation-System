@@ -29,7 +29,7 @@ const FeaturedCars = () => {
       <h2 className="text-3xl font-bold text-center mb-8">Featured Cars</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {cars.map((car) => (
-          <div className="card w-96 bg-white shadow-xl mx-auto">
+          <div className="card bg-white shadow-xl mx-auto">
             <figure>
               <img
                 src={car.image}

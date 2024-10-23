@@ -28,6 +28,16 @@ const Header = () => {
           Contact
         </NavLink>
       </li>
+      <li className="mx-2">
+        <NavLink to="/dashboard" className="font-sans font-bold text-lg">
+          <label
+            htmlFor="dashboard"
+            className="cursor-pointer"
+          >
+            Dashboard
+          </label>
+        </NavLink>
+      </li>
     </>
   );
 
